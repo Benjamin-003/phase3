@@ -10,8 +10,8 @@ export function sortSamples(samples: Sample[]): Sample[] {
 
     return [...samples].sort((a, b) => {
         // 1. Comparaison par priorité
-        const weightA = priorityOrder[a.priority] ?? 3;
-        const weightB = priorityOrder[b.priority] ?? 3;
+        const weightA = priorityOrder[a.priority] ?? 99;
+        const weightB = priorityOrder[b.priority] ?? 99;
 
         if (weightA !== weightB) {
             return weightA - weightB;

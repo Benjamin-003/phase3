@@ -1,0 +1,32 @@
+{
+  "technicians": [
+    {
+      "id": "T001",
+      "name": "Alice Martin",
+      "speciality": "BLOOD",
+      "startTime": "08:00",
+      "endTime": "17:00"
+    },
+    {
+      "id": "T002",
+      "name": "Jean Dupont",
+      "speciality": "BLOOD",
+      "startTime": "08:00",
+      "endTime": "17:00"
+    },
+    {
+      "id": "T003",
+      "name": "Lucie Durand",
+      "speciality": "BLOOD",
+      "startTime": "08:00",
+      "endTime": "17:00"
+    },
+    {
+      "id": "T004",
+      "name": "Samy Polyvalent",
+      "speciality": "GENERAL",
+      "startTime": "08:00",
+      "endTime": "17:00"
+    }
+  ]
+}

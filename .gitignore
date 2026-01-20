@@ -1,6 +1,6 @@
 # Dépendances
 node_modules/
-
+dist/
 # Logs et divers
 npm-debug.log*
 .DS_Store
