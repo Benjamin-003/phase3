@@ -1,0 +1,52 @@
+{
+  "samples": [
+    {
+      "id": "S001",
+      "type": "BLOOD",
+      "priority": "URGENT",
+      "analysisTime": 30,
+      "arrivalTime": "09:00",
+      "patientId": "P001"
+    },
+    {
+      "id": "S002",
+      "type": "BLOOD",
+      "priority": "URGENT",
+      "analysisTime": 45,
+      "arrivalTime": "09:00",
+      "patientId": "P001"
+    },
+    {
+      "id": "S003",
+      "type": "BLOOD",
+      "priority": "STAT",
+      "analysisTime": 30,
+      "arrivalTime": "09:30",
+      "patientId": "P002"
+    },
+    {
+      "id": "S004",
+      "type": "BLOOD",
+      "priority": "URGENT",
+      "analysisTime": 60,
+      "arrivalTime": "09:00",
+      "patientId": "P001"
+    },
+    {
+      "id": "S005",
+      "type": "URINE",
+      "priority": "URGENT",
+      "analysisTime": 30,
+      "arrivalTime": "09:15",
+      "patientId": "P002"
+    },
+    {
+      "id": "S006",
+      "type": "BLOOD",
+      "priority": "ROUTINE",
+      "analysisTime": 45,
+      "arrivalTime": "09:00",
+      "patientId": "P003"
+    }
+  ]
+}
