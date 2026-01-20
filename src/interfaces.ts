@@ -1,6 +1,5 @@
 import type { Specialty, Priority } from "./types.ts";
 
-// Les Entrées (Input)
 export interface Sample {
     id: string;
     type: Specialty;
@@ -25,7 +24,6 @@ export interface Equipment {
     available: boolean;
 }
 
-// Les Sorties (Output)
 export interface ScheduleEntry {
     sampleId: string;
     technicianId: string;
@@ -45,4 +43,20 @@ export interface Metrics {
 export interface PlanifyResult {
     schedule: ScheduleEntry[];
     metrics: Metrics;
+}
+
+export interface FinalOutput {
+  schedule: {
+    sampleId: string;
+    technicianId: string;
+    equipmentId: string;
+    startTime: string;
+    endTime: string;
+    priority: string;
+  }[];
+  metrics: {
+    totalTime: number;
+    efficiency: number;
+    conflicts: number;
+  };
 }

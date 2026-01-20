@@ -1,29 +1,13 @@
-import { sortSamples } from "./planner.js";
-import { DataService } from "./services.js";
+import { DataService } from './services.js';
+import { Planner } from './planner.js';
 
 async function main() {
-    try {
-        console.log("=== LABORATORY PLANNER - ===");
-        
-        // Chargement des données via ton nouveau service
-        const { samples, technicians, equipments } = await DataService.loadAllData();
-        
-        console.log(`📊 Données chargées : ${samples.length} échantillons`);
+    const { samples, technicians, equipments } = await DataService.loadAllData();
+    
+    const planner = new Planner();
+    const result = planner.execute(samples, technicians, equipments);
 
-        // Tri des échantillons
-        const sortedQueue = sortSamples(samples);
-
-        console.log("\n📋 FILE D'ATTENTE PRIORISÉE :");
-        console.table(sortedQueue.map(s => ({
-            ID: s.id,
-            Priorité: s.priority,
-            Heure: s.arrivalTime,
-            Type: s.type
-        })));
-
-    } catch (error) {
-        console.error("Le programme s'est arrêté suite à une erreur.");
-    }
+    console.log(JSON.stringify(result, null, 2));
 }
 
 main();
