@@ -10,12 +10,12 @@ export class SampleSorter {
     };
 
     /**
-     * Sorts samples by priority weight, then by arrival time (FIFO).
+     * Sorts samples by priority weight, then by arrival time.
      */
     public static sort(samples: Sample[]): Sample[] {
         return [...samples].sort((a, b) => {
-            const weightA = this.PRIORITY_WEIGHTS[a.priority] ?? 99;
-            const weightB = this.PRIORITY_WEIGHTS[b.priority] ?? 99;
+            const weightA = this.PRIORITY_WEIGHTS[a.priority] ?? 3;
+            const weightB = this.PRIORITY_WEIGHTS[b.priority] ?? 3;
             
             // If priorities differ, sort by weight
             if (weightA !== weightB) return weightA - weightB;

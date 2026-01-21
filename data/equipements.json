@@ -1,28 +1,9 @@
 {
   "equipment": [
-    {
-      "id": "E001",
-      "name": "Analyseur Sang A",
-      "type": "BLOOD", 
-      "available": true
-    }, 
-    {
-      "id": "E002",
-      "name": "Analyseur Sang B",
-      "type": "BLOOD",
-      "available": true
-    },
-    {
-      "id": "E003",
-      "name": "Analyseur Sang C",
-      "type": "BLOOD",
-      "available": true
-    },
-    {
-      "id": "E004", 
-      "name": "Analyseur Urine X",
-      "type": "URINE",
-      "available": true
-    }
+    {"id": "E001", "type": "HEMOGRAM", "available": true, "cleaningTime": 10},
+    {"id": "E002", "type": "BIOCHEMISTRY", "available": true, "cleaningTime": 15},
+    {"id": "E003", "type": "URINALYSIS", "available": true, "cleaningTime": 5},
+    {"id": "E004", "type": "BIOPSY", "available": true, "cleaningTime": 20},
+    {"id": "E005", "type": "HEMOGRAM", "available": true, "cleaningTime": 10}
   ]
 }

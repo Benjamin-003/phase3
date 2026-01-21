@@ -1,0 +1,344 @@
+{
+  "laboratory": {
+    "date": "2025-03-15",
+    "processingDate": "2026-01-21",
+    "totalSamples": 20,
+    "algorithmVersion": "v1.0"
+  },
+  "schedule": [
+    {
+      "sampleId": "S001",
+      "priority": "STAT",
+      "technicianId": "T001",
+      "equipmentId": "E001",
+      "startTime": "08:30",
+      "endTime": "09:06",
+      "duration": 36,
+      "analysisType": "HEMOGRAM",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S004",
+      "priority": "STAT",
+      "technicianId": "T003",
+      "equipmentId": "E004",
+      "startTime": "09:15",
+      "endTime": "10:09",
+      "duration": 54,
+      "analysisType": "BIOPSY",
+      "efficiency": 0.9,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S008",
+      "priority": "STAT",
+      "technicianId": "T001",
+      "equipmentId": "E002",
+      "startTime": "10:15",
+      "endTime": "10:39",
+      "duration": 24,
+      "analysisType": "BIOCHEMISTRY",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S011",
+      "priority": "STAT",
+      "technicianId": "T002",
+      "equipmentId": "E003",
+      "startTime": "11:00",
+      "endTime": "11:15",
+      "duration": 15,
+      "analysisType": "URINALYSIS",
+      "efficiency": 1,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S017",
+      "priority": "STAT",
+      "technicianId": "T001",
+      "equipmentId": "E002",
+      "startTime": "13:15",
+      "endTime": "13:43",
+      "duration": 28,
+      "analysisType": "BIOCHEMISTRY",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S002",
+      "priority": "URGENT",
+      "technicianId": "T001",
+      "equipmentId": "E001",
+      "startTime": "13:43",
+      "endTime": "14:07",
+      "duration": 24,
+      "analysisType": "HEMOGRAM",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S005",
+      "priority": "URGENT",
+      "technicianId": "T001",
+      "equipmentId": "E002",
+      "startTime": "14:07",
+      "endTime": "14:39",
+      "duration": 32,
+      "analysisType": "BIOCHEMISTRY",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S009",
+      "priority": "URGENT",
+      "technicianId": "T003",
+      "equipmentId": "E004",
+      "startTime": "10:30",
+      "endTime": "11:15",
+      "duration": 45,
+      "analysisType": "BIOPSY",
+      "efficiency": 0.9,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S012",
+      "priority": "URGENT",
+      "technicianId": "T001",
+      "equipmentId": "E001",
+      "startTime": "14:39",
+      "endTime": "15:03",
+      "duration": 24,
+      "analysisType": "HEMOGRAM",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S015",
+      "priority": "URGENT",
+      "technicianId": "T002",
+      "equipmentId": "E003",
+      "startTime": "12:00",
+      "endTime": "12:25",
+      "duration": 25,
+      "analysisType": "URINALYSIS",
+      "efficiency": 1,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S018",
+      "priority": "URGENT",
+      "technicianId": "T003",
+      "equipmentId": "E004",
+      "startTime": "14:00",
+      "endTime": "14:50",
+      "duration": 50,
+      "analysisType": "BIOPSY",
+      "efficiency": 0.9,
+      "lunchBreak": true,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S003",
+      "priority": "ROUTINE",
+      "technicianId": "T002",
+      "equipmentId": "E003",
+      "startTime": "13:30",
+      "endTime": "13:50",
+      "duration": 20,
+      "analysisType": "URINALYSIS",
+      "efficiency": 1,
+      "lunchBreak": true,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S006",
+      "priority": "ROUTINE",
+      "technicianId": "T001",
+      "equipmentId": "E001",
+      "startTime": "15:13",
+      "endTime": "15:33",
+      "duration": 20,
+      "analysisType": "HEMOGRAM",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S007",
+      "priority": "ROUTINE",
+      "technicianId": "T002",
+      "equipmentId": "E003",
+      "startTime": "13:55",
+      "endTime": "14:15",
+      "duration": 20,
+      "analysisType": "URINALYSIS",
+      "efficiency": 1,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S010",
+      "priority": "ROUTINE",
+      "technicianId": "T001",
+      "equipmentId": "E002",
+      "startTime": "15:33",
+      "endTime": "16:01",
+      "duration": 28,
+      "analysisType": "BIOCHEMISTRY",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S013",
+      "priority": "ROUTINE",
+      "technicianId": "T003",
+      "equipmentId": "E004",
+      "startTime": "15:10",
+      "endTime": "15:51",
+      "duration": 41,
+      "analysisType": "BIOPSY",
+      "efficiency": 0.9,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S014",
+      "priority": "ROUTINE",
+      "technicianId": "T001",
+      "equipmentId": "E002",
+      "startTime": "16:16",
+      "endTime": "16:40",
+      "duration": 24,
+      "analysisType": "BIOCHEMISTRY",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S016",
+      "priority": "ROUTINE",
+      "technicianId": "T001",
+      "equipmentId": "E001",
+      "startTime": "16:40",
+      "endTime": "16:56",
+      "duration": 16,
+      "analysisType": "HEMOGRAM",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S019",
+      "priority": "ROUTINE",
+      "technicianId": "T002",
+      "equipmentId": "E003",
+      "startTime": "14:20",
+      "endTime": "14:40",
+      "duration": 20,
+      "analysisType": "URINALYSIS",
+      "efficiency": 1,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    },
+    {
+      "sampleId": "S020",
+      "priority": "ROUTINE",
+      "technicianId": "T001",
+      "equipmentId": "E001",
+      "startTime": "17:06",
+      "endTime": "17:30",
+      "duration": 24,
+      "analysisType": "HEMOGRAM",
+      "efficiency": 0.8,
+      "lunchBreak": false,
+      "cleaningRequired": true
+    }
+  ],
+  "metrics": {
+    "totalTime": 540,
+    "efficiency": 13.2,
+    "conflicts": 0,
+    "averageWaitTime": {
+      "STAT": 0,
+      "URGENT": 135,
+      "ROUTINE": 228
+    },
+    "technicianUtilization": 14.8,
+    "priorityRespectRate": 100,
+    "parallelAnalyses": 3,
+    "lunchInterruptions": 0
+  },
+  "metadata": {
+    "lunchBreaks": [
+      {
+        "technicianId": "T001",
+        "planned": "12:00-13:00",
+        "actual": "12:00-13:00",
+        "reason": "optimized"
+      },
+      {
+        "technicianId": "T002",
+        "planned": "12:30-13:30",
+        "actual": "12:30-13:30",
+        "reason": "optimized"
+      },
+      {
+        "technicianId": "T003",
+        "planned": "13:00-14:00",
+        "actual": "13:00-14:00",
+        "reason": "optimized"
+      },
+      {
+        "technicianId": "T004",
+        "planned": "12:00-13:00",
+        "actual": "12:00-13:00",
+        "reason": "optimized"
+      },
+      {
+        "technicianId": "T005",
+        "planned": "12:00-13:00",
+        "actual": "12:00-13:00",
+        "reason": "optimized"
+      },
+      {
+        "technicianId": "T006",
+        "planned": "12:30-13:30",
+        "actual": "12:30-13:30",
+        "reason": "optimized"
+      },
+      {
+        "technicianId": "T007",
+        "planned": "11:30-12:30",
+        "actual": "11:30-12:30",
+        "reason": "optimized"
+      },
+      {
+        "technicianId": "T008",
+        "planned": "13:30-14:30",
+        "actual": "13:30-14:30",
+        "reason": "optimized"
+      }
+    ],
+    "constraintsApplied": [
+      "priority_management",
+      "specialization_matching",
+      "lunch_breaks",
+      "equipment_compatibility",
+      "cleaning_delays",
+      "efficiency_coefficients"
+    ]
+  }
+}

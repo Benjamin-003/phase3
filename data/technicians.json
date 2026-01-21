@@ -1,32 +1,12 @@
 {
   "technicians": [
-    {
-      "id": "T001",
-      "name": "Alice Martin",
-      "speciality": "BLOOD",
-      "startTime": "08:00",
-      "endTime": "17:00"
-    },
-    {
-      "id": "T002",
-      "name": "Jean Dupont",
-      "speciality": "BLOOD",
-      "startTime": "08:00",
-      "endTime": "17:00"
-    },
-    {
-      "id": "T003",
-      "name": "Lucie Durand",
-      "speciality": "BLOOD",
-      "startTime": "08:00",
-      "endTime": "17:00"
-    },
-    {
-      "id": "T004",
-      "name": "Samy Polyvalent",
-      "speciality": "GENERAL",
-      "startTime": "08:00",
-      "endTime": "17:00"
-    }
+    {"id": "T001", "specialties": ["BLOOD"], "efficiency": 0.8, "startTime": "08:00", "endTime": "17:00", "lunchBreak": "12:00-13:00"},
+    {"id": "T002", "specialties": ["BLOOD", "URINE"], "efficiency": 1.0, "startTime": "08:30", "endTime": "17:30", "lunchBreak": "12:30-13:30"},
+    {"id": "T003", "specialties": ["TISSUE"], "efficiency": 0.9, "startTime": "09:00", "endTime": "18:00", "lunchBreak": "13:00-14:00"},
+    {"id": "T004", "specialties": ["GENERAL"], "efficiency": 1.2, "startTime": "08:00", "endTime": "17:00", "lunchBreak": "12:00-13:00"},
+    {"id": "T005", "specialties": ["URINE"], "efficiency": 1.0, "startTime": "08:00", "endTime": "17:00", "lunchBreak": "12:00-13:00"},
+    {"id": "T006", "specialties": ["BLOOD", "TISSUE"], "efficiency": 0.85, "startTime": "08:30", "endTime": "17:30", "lunchBreak": "12:30-13:30"},
+    {"id": "T007", "specialties": ["GENERAL"], "efficiency": 1.1, "startTime": "07:00", "endTime": "16:00", "lunchBreak": "11:30-12:30"},
+    {"id": "T008", "specialties": ["BLOOD"], "efficiency": 0.95, "startTime": "09:00", "endTime": "18:00", "lunchBreak": "13:30-14:30"}
   ]
 }

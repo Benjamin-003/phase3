@@ -32,10 +32,9 @@ async loadAllData() {
         };
 
     } catch (error) {
-        // SCOPE 4: Error Handling
         // Catch and log filesystem (ENOENT) or syntax errors (JSON.parse).
         // Re-throwing the error allows the caller (main.ts) to handle the crash gracefully.
-        console.error("❌ Data loading failed:", error);
+        console.error("Data loading failed:", error);
         throw error;
     }
 }

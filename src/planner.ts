@@ -1,92 +1,95 @@
-import type { Sample, Technician, Equipment, FinalOutput } from './interfaces.js';
+import type { Sample, Technician, Equipment, FinalOutput, ScheduledTask } from './interfaces.js';
 import { timeToMinutes, minutesToTime } from './utils.js';
 import { SampleSorter } from './sorter.js';
 import { MetricsCalculator } from './metrics.js';
 
-/**
- * Main orchestration class for laboratory resource planning.
- */
 export class Planner {
-    // Tracking maps to store the next available time (in minutes) for each resource
     private techBusyUntil = new Map<string, number>();
     private equipBusyUntil = new Map<string, number>();
 
-    /**
-     * Executes the scheduling logic based on provided samples and resources.
-     * @returns A complete schedule and its associated performance metrics.
-     */
     public execute(samples: Sample[], technicians: Technician[], equipments: Equipment[]): FinalOutput {
-        
-        // Resource Initialization
-        // Reset availability trackers based on technician shift start times and equipment availability
+        // Init resources availability
         technicians.forEach(t => this.techBusyUntil.set(t.id, timeToMinutes(t.startTime)));
         equipments.forEach(e => this.equipBusyUntil.set(e.id, 0));
 
-        // Pre-processing
-        // Delegate sorting to the specialized SampleSorter class (Priority + Arrival Time)
         const sorted = SampleSorter.sort(samples);
-        
-        const schedule = [];
-        let totalWorkTime = 0;
+        const schedule: ScheduledTask[] = [];
+        let totalEffectiveWorkTime = 0; // Track total work duration for metrics
 
-        // Resource Assignment Loop
-        // Iterate through each sorted sample to find the best possible time slot
         for (const sample of sorted) {
-            
+            // Find compatible technician
             const tech = technicians.find(t => 
-                (t.speciality === sample.type || t.speciality === 'GENERAL') &&
-                (this.techBusyUntil.get(t.id) || 0) < timeToMinutes(t.endTime)
+                t.specialties.includes(sample.type) || t.specialties.includes('GENERAL')
             );
+            // Find compatible equipment
+            const equip = equipments.find(e => e.type === sample.analysisType || e.type === sample.type);
 
-            const equip = equipments.find(e => e.type === sample.type);
-
-            // --- INSÉREZ VOTRE NOUVEAU BLOC ICI ---
             if (tech && equip) {
-                // 1. Calculate the start time (When all are ready)
                 const arrival = timeToMinutes(sample.arrivalTime);
-                const techFreeAt = this.techBusyUntil.get(tech.id)!;
-                const equipFreeAt = this.equipBusyUntil.get(equip.id)!;
-
-                const startTime = Math.max(arrival, techFreeAt, equipFreeAt);
+                let start = Math.max(arrival, this.techBusyUntil.get(tech.id)!, this.equipBusyUntil.get(equip.id)!);
+                const duration = Math.ceil(sample.analysisTime * tech.efficiency);
                 
-                // 2. USE THE INPUT DURATION: sample.analysisTime
-                // On utilise la valeur dynamique de l'échantillon
-                const duration = sample.analysisTime || 30; 
-                const endTime = startTime + duration;
-
-                // 3. BLOCK the resources
-                this.techBusyUntil.set(tech.id, endTime);
-                this.equipBusyUntil.set(equip.id, endTime);
+                // Lunch logic with safe split and mapping
+                const [rawStart, rawEnd] = tech.lunchBreak.split('-');
+                const bStart = timeToMinutes(rawStart || "12:00");
+                const bEnd = timeToMinutes(rawEnd || "13:00");
                 
-                totalWorkTime += duration;
+                let wasShiftedByLunch = false;
+                if (start < bEnd && (start + duration) > bStart) {
+                    if (sample.priority !== 'STAT') {
+                        start = bEnd;
+                        wasShiftedByLunch = true;
+                    }
+                }
 
-                // 4. Record in schedule
+                const end = start + duration;
+                
+                // Update availability status
+                this.techBusyUntil.set(tech.id, end);
+                this.equipBusyUntil.set(equip.id, end + equip.cleaningTime);
+                totalEffectiveWorkTime += duration;
+
                 schedule.push({
                     sampleId: sample.id,
+                    priority: sample.priority,
                     technicianId: tech.id,
                     equipmentId: equip.id,
-                    startTime: minutesToTime(startTime),
-                    endTime: minutesToTime(endTime),
-                    priority: sample.priority
+                    startTime: minutesToTime(start),
+                    endTime: minutesToTime(end),
+                    duration,
+                    analysisType: sample.analysisType,
+                    efficiency: tech.efficiency,
+                    lunchBreak: wasShiftedByLunch,
+                    cleaningRequired: equip.cleaningTime > 0
                 });
             }
-            // --- FIN DU BLOC ---
         }
 
-        // Metrics Analysis
-        // Delegate performance calculations to the specialized MetricsCalculator class
-        const metrics = MetricsCalculator.calculate(
-            schedule, 
-            technicians.length, 
-            equipments.length, 
-            totalWorkTime
-        );
+        
 
-        // Final Result Delivery
-        // Return the standardized JSON structure expected by the system
         return {
-            schedule: schedule,
-            metrics: metrics
+            laboratory: {
+                date: "2025-03-15",
+                // Fallback to empty string to satisfy TS strict mode if split fails
+                processingDate: new Date().toISOString().split('T')[0] || "",
+                totalSamples: samples.length,
+                algorithmVersion: "v1.0"
+            },
+            schedule,
+            // Added missing totalEffectiveWorkTime argument
+            metrics: MetricsCalculator.calculate(schedule, samples, technicians.length, totalEffectiveWorkTime),
+            metadata: {
+                lunchBreaks: technicians.map(t => ({
+                    technicianId: t.id,
+                    planned: t.lunchBreak,
+                    actual: t.lunchBreak, 
+                    reason: "optimized"
+                })),
+                constraintsApplied: [
+                    "priority_management", "specialization_matching", "lunch_breaks",
+                    "equipment_compatibility", "cleaning_delays", "efficiency_coefficients"
+                ]
+            }
         };
     }
 }

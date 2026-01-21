@@ -1,52 +1,24 @@
 {
   "samples": [
-    {
-      "id": "S001",
-      "type": "BLOOD",
-      "priority": "URGENT",
-      "analysisTime": 30,
-      "arrivalTime": "09:00",
-      "patientId": "P001"
-    },
-    {
-      "id": "S002",
-      "type": "BLOOD",
-      "priority": "URGENT",
-      "analysisTime": 45,
-      "arrivalTime": "09:00",
-      "patientId": "P001"
-    },
-    {
-      "id": "S003",
-      "type": "BLOOD",
-      "priority": "STAT",
-      "analysisTime": 30,
-      "arrivalTime": "09:30",
-      "patientId": "P002"
-    },
-    {
-      "id": "S004",
-      "type": "BLOOD",
-      "priority": "URGENT",
-      "analysisTime": 60,
-      "arrivalTime": "09:00",
-      "patientId": "P001"
-    },
-    {
-      "id": "S005",
-      "type": "URINE",
-      "priority": "URGENT",
-      "analysisTime": 30,
-      "arrivalTime": "09:15",
-      "patientId": "P002"
-    },
-    {
-      "id": "S006",
-      "type": "BLOOD",
-      "priority": "ROUTINE",
-      "analysisTime": 45,
-      "arrivalTime": "09:00",
-      "patientId": "P003"
-    }
+    {"id": "S001", "priority": "STAT", "type": "BLOOD", "analysisType": "HEMOGRAM", "analysisTime": 45, "arrivalTime": "08:30"},
+    {"id": "S002", "priority": "URGENT", "type": "BLOOD", "analysisType": "HEMOGRAM", "analysisTime": 30, "arrivalTime": "08:45"},
+    {"id": "S003", "priority": "ROUTINE", "type": "URINE", "analysisType": "URINALYSIS", "analysisTime": 20, "arrivalTime": "09:00"},
+    {"id": "S004", "priority": "STAT", "type": "TISSUE", "analysisType": "BIOPSY", "analysisTime": 60, "arrivalTime": "09:15"},
+    {"id": "S005", "priority": "URGENT", "type": "BLOOD", "analysisType": "BIOCHEMISTRY", "analysisTime": 40, "arrivalTime": "09:30"},
+    {"id": "S006", "priority": "ROUTINE", "type": "BLOOD", "analysisType": "HEMOGRAM", "analysisTime": 25, "arrivalTime": "09:45"},
+    {"id": "S007", "priority": "ROUTINE", "type": "URINE", "analysisType": "URINALYSIS", "analysisTime": 20, "arrivalTime": "10:00"},
+    {"id": "S008", "priority": "STAT", "type": "BLOOD", "analysisType": "BIOCHEMISTRY", "analysisTime": 30, "arrivalTime": "10:15"},
+    {"id": "S009", "priority": "URGENT", "type": "TISSUE", "analysisType": "BIOPSY", "analysisTime": 50, "arrivalTime": "10:30"},
+    {"id": "S010", "priority": "ROUTINE", "type": "BLOOD", "analysisType": "BIOCHEMISTRY", "analysisTime": 35, "arrivalTime": "10:45"},
+    {"id": "S011", "priority": "STAT", "type": "URINE", "analysisType": "URINALYSIS", "analysisTime": 15, "arrivalTime": "11:00"},
+    {"id": "S012", "priority": "URGENT", "type": "BLOOD", "analysisType": "HEMOGRAM", "analysisTime": 30, "arrivalTime": "11:15"},
+    {"id": "S013", "priority": "ROUTINE", "type": "TISSUE", "analysisType": "BIOPSY", "analysisTime": 45, "arrivalTime": "11:30"},
+    {"id": "S014", "priority": "ROUTINE", "type": "BLOOD", "analysisType": "BIOCHEMISTRY", "analysisTime": 30, "arrivalTime": "11:45"},
+    {"id": "S015", "priority": "URGENT", "type": "URINE", "analysisType": "URINALYSIS", "analysisTime": 25, "arrivalTime": "12:00"},
+    {"id": "S016", "priority": "ROUTINE", "type": "BLOOD", "analysisType": "HEMOGRAM", "analysisTime": 20, "arrivalTime": "13:00"},
+    {"id": "S017", "priority": "STAT", "type": "BLOOD", "analysisType": "BIOCHEMISTRY", "analysisTime": 35, "arrivalTime": "13:15"},
+    {"id": "S018", "priority": "URGENT", "type": "TISSUE", "analysisType": "BIOPSY", "analysisTime": 55, "arrivalTime": "13:30"},
+    {"id": "S019", "priority": "ROUTINE", "type": "URINE", "analysisType": "URINALYSIS", "analysisTime": 20, "arrivalTime": "13:45"},
+    {"id": "S020", "priority": "ROUTINE", "type": "BLOOD", "analysisType": "HEMOGRAM", "analysisTime": 30, "arrivalTime": "14:00"}
   ]
 }
