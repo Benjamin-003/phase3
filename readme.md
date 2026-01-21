@@ -1,51 +1,33 @@
-Voici ton **Cheat Sheet** converti en format Markdown (`.md`), prêt à être copié dans un fichier `RULES.md` à la racine de ton projet par exemple.
+# Laboratoire - Système de Planification
 
----
+## Description
 
-# 📋 Cheat Sheet : Système de Planification Labo
+Ce projet propose une solution algorithmique pour l'ordonnancement automatisé d'analyses médicales au sein d'un laboratoire. L'objectif est d'optimiser l'utilisation des ressources humaines (techniciens) et matérielles (équipements) tout en garantissant le respect strict des priorités médicales. Le système résout la problématique complexe de la synchronisation entre la disponibilité des échantillons, les compétences spécifiques des techniciens et les cycles de maintenance/nettoyage des machines.
 
-## 1. Hiérarchie des Priorités
+## Installation
 
-Le moteur de tri suit un ordre strict pour déterminer quel échantillon passe en premier :
+1. Assurez-vous d'avoir Node.js installé sur votre environnement.
+2. Clonez ou téléchargez le répertoire du projet.
+3. Ouvrez un terminal à la racine du projet et installez les dépendances nécessaires :
+   npm install
 
-1. **STAT** : Priorité absolue (urgence vitale).
-2. **URGENT** : Priorité intermédiaire.
-3. **ROUTINE** : Traitement standard.
+## Utilisation
 
-> **Règle de départage :** Si deux échantillons ont la même priorité, celui qui possède l'heure d'arrivée (`arrivalTime`) la plus ancienne est traité en premier (**FIFO - First In, First Out**).
+1. Placez vos données d'entrée (échantillons, techniciens, équipements) dans le dossier /data au format JSON.
+2. Pour compiler le code TypeScript en JavaScript :
+   npm run build
+3. Pour exécuter l'algorithme de planification :
+   npm start
+4. Le résultat de la planification ainsi que les indicateurs de performance seront générés dans le fichier :
+   /output/output-example.json
 
----
+## Évolution depuis version SIMPLE
 
-## 2. Matrice de Compatibilité Ressources
+Cette version "Intermédiaire" apporte plusieurs améliorations critiques par rapport au modèle de base :
 
-Chaque analyse nécessite un binôme **Technicien + Équipement** adapté au type de l'échantillon.
-
-| Type Échantillon | Spécialité Technicien | Type Équipement |
-| --- | --- | --- |
-| **BLOOD** | `BLOOD` ou `GENERAL` | `BLOOD` |
-| **URINE** | `GENERAL` uniquement | `URINE` |
-
----
-
-## 3. Logique Temporelle d'Assignation
-
-L'heure de début d'une analyse () est déterminée par la disponibilité simultanée de trois facteurs :
-
-* **Heure de Fin :**  (en minutes).
-* **Mise à jour :** Une fois assignés, le technicien et l'équipement sont marqués "occupés" jusqu'à l'heure de fin calculée.
-
----
-
-## 4. Contraintes de Capacité & Identité
-
-* **Unicité :** Chaque technicien (`T001`, `T002`...) et chaque machine (`E001`, `E002`...) est une entité unique. Ils ne peuvent traiter qu'**un seul** échantillon à la fois.
-* **Horaires :** Un technicien ne peut pas commencer une tâche avant son `startTime` ni la finir après son `endTime`.
-
----
-
-## 5. Flux de Données
-
-* **Input :** Fichiers JSON locaux (via `DataService`).
-* **Sortie attendue :** Un tableau d'objets `ScheduledAnalysis` détaillant le planning complet.
-
----
+* Gestion des priorités : Implémentation d'un tri multicritère (STAT, URGENT, ROUTINE) couplé à l'heure d'arrivée.
+* Spécialisation des ressources : Filtrage des techniciens par compétences métier (Hématologie, Biochimie, etc.) et des équipements par compatibilité d'analyse.
+* Efficacité variable : Prise en compte d'un coefficient d'efficacité par technicien impactant la durée réelle de chaque analyse.
+* Contraintes opérationnelles : Intégration automatique de temps de nettoyage obligatoires entre deux utilisations d'un équipement.
+* Gestion des pauses : Décalage intelligent des tâches non-prioritaires pour respecter les créneaux de déjeuner des techniciens.
+* Analyse de performance : Génération automatique de métriques incluant le temps d'attente moyen par priorité et le taux d'utilisation des ressources.
