@@ -31,12 +31,12 @@ export class MetricsCalculator {
             };
         }
 
-        // 1. Calculate Total Time span of the operations
+        // Calculate Total Time span of the operations
         const startTimes = schedule.map(s => timeToMinutes(s.startTime));
         const endTimes = schedule.map(s => timeToMinutes(s.endTime));
         const totalTime = Math.max(...endTimes) - Math.min(...startTimes);
 
-        // 2. Helper function to calculate average wait time per priority level
+        // Helper function to calculate average wait time per priority level
         const getAvgWait = (priority: string) => {
             const priorityTasks = schedule.filter(t => t.priority === priority);
             if (priorityTasks.length === 0) return 0;
@@ -50,7 +50,7 @@ export class MetricsCalculator {
             return Math.round(totalWait / priorityTasks.length);
         };
 
-        // 3. Calculate Peak Parallelism (Maximum concurrent analyses)
+        // Calculate Peak Parallelism (Maximum concurrent analyses)
         let maxParallel = 0;
         let currentRunning = 0;
         // Create a timeline of events (Start = +1, End = -1)
@@ -64,7 +64,7 @@ export class MetricsCalculator {
             if (currentRunning > maxParallel) maxParallel = currentRunning;
         }
 
-        // 4. Calculate Resource Utilization 
+        // Calculate Resource Utilization 
         // Based on a standard 8-hour shift (480 minutes) per technician
         const theoreticalCapacity = techCount * 480;
         const technicianUtilization = Number(((totalWorkTime / theoreticalCapacity) * 100).toFixed(1));
