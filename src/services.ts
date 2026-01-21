@@ -1,42 +1,64 @@
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path'; // Ajoute cet import
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import type { Sample, Technician, Equipment } from './interfaces.js';
 
-export const DataService = {
-
 /**
- * Asynchronously loads all data from JSON files.
- * Uses Promise.all for parallel reading to optimize performance.
+ * Service class handling data persistence and retrieval.
  */
-async loadAllData() {
-    try {
-        // Path resolution
-        // Define the project root to ensure absolute paths regardless of execution context.
-        const root = process.cwd(); 
+export class DataService {
 
-        // Parallel file reading
-        // Trigger all read operations simultaneously to avoid blocking the event loop.
-        const [samplesRaw, techsRaw, equipRaw] = await Promise.all([
-            readFile(join(root, 'data', 'samples.json'), 'utf-8'),
-            readFile(join(root, 'data', 'technicians.json'), 'utf-8'),
-            readFile(join(root, 'data', 'equipements.json'), 'utf-8')
-        ]);
+    /**
+     * Loads all laboratory data from JSON files simultaneously.
+     * Uses Promise.all to optimize performance through parallel I/O operations.
+     */
+    static async loadAllData() {
+        try {
+            const root = process.cwd(); 
 
-        // Parsing and Data Mapping
-        // Convert raw strings into structured objects and extract specific arrays.
-        // Type casting (as Sample[], etc.) is used to enforce TypeScript safety.
-        return {
-            samples: JSON.parse(samplesRaw).samples as Sample[],
-            technicians: JSON.parse(techsRaw).technicians as Technician[],
-            equipments: JSON.parse(equipRaw).equipment as Equipment[]
-        };
+            // Execute multiple read operations in parallel
+            const [samplesRaw, techsRaw, equipRaw] = await Promise.all([
+                readFile(join(root, 'data', 'samples.json'), 'utf-8'),
+                readFile(join(root, 'data', 'technicians.json'), 'utf-8'),
+                readFile(join(root, 'data', 'equipements.json'), 'utf-8')
+            ]);
 
-    } catch (error) {
-        // Catch and log filesystem (ENOENT) or syntax errors (JSON.parse).
-        // Re-throwing the error allows the caller (main.ts) to handle the crash gracefully.
-        console.error("Data loading failed:", error);
-        throw error;
+            // Parse raw JSON strings into structured objects with type casting
+            return {
+                samples: JSON.parse(samplesRaw).samples as Sample[],
+                technicians: JSON.parse(techsRaw).technicians as Technician[],
+                equipments: JSON.parse(equipRaw).equipment as Equipment[]
+            };
+
+        } catch (error) {
+            console.error("Critical error during data loading:", error);
+            throw error;
+        }
+    }
+
+    /**
+     * Exports the planning results to a JSON file.
+     * Automatically creates the output directory if it does not exist.
+     * @param data - The calculated schedule and metrics to be saved.
+     * @param fileName - Target filename for the export.
+     */
+    static async saveResults(data: any, fileName: string = 'output-example.json'): Promise<void> {
+        const outputDir = join(process.cwd(), 'output');
+        const filePath = join(outputDir, fileName);
+
+        try {
+            // Check for directory existence and create it recursively if missing
+            if (!existsSync(outputDir)) {
+                await mkdir(outputDir, { recursive: true });
+                console.log(`Created missing directory: ${outputDir}`);
+            }
+
+            // Write data to disk with 2-space indentation for readability
+            await writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
+            console.log(`Results successfully saved to: ${filePath}`);
+        } catch (error) {
+            console.error("Failed to save results to disk:", error);
+            throw error;
+        }
     }
 }
-
-};
